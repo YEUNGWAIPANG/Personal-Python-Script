@@ -14,11 +14,11 @@ class Pretty:
         return headers
 
     # 优化Excel文件格式，使行宽列宽适合。
-    def Pretty_excel(self,filename,sheetname) -> None:
-        wb = openpyxl.load_workbook(filename)
+    def Pretty_excel(self,filepath,sheetname) -> None:
+        wb = openpyxl.load_workbook(filepath)
         ws = wb[sheetname]
 
-        df=pd.read_excel(filename,sheetname).fillna('-')
+        df=pd.read_excel(filepath,sheetname).fillna('-')
         df.loc[len(df)]=list(df.columns)						#把标题行附加到最后一行
         for col in df.columns:				
             index=list(df.columns).index(col)					#列序号
@@ -30,4 +30,4 @@ class Pretty:
         for c in range(1,ws.max_column + 1):
             for r in range(1,ws.max_row + 1):
                 ws.cell(row=r,column=c).alignment = Alignment(horizontal='center', vertical='center')
-        wb.save(filename)
+        wb.save(filepath)

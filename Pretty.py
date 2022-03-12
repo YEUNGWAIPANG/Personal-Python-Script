@@ -4,7 +4,7 @@ from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
 
 class Pretty:
-    # 直接复制请求头时以字符串形式转为字典格式
+    # 爬虫编写时直接复制请求头，一个参数一行，以字符串形式转为字典格式（开头为":"的要先去掉，否则会报错）
     def Pretty_headers(self,start_headers:str) -> dict:
         headers = {}
         start_headers = start_headers.strip().split("\n")

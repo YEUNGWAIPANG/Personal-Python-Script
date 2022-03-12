@@ -4,7 +4,7 @@ from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
 
 class Pretty:
-    # 爬虫编写时直接复制请求头，一个参数一行，以字符串形式转为字典格式（开头为":"的要先去掉，否则会报错）
+    # 编写爬虫时直接复制请求头，一个参数一行，传入该函数，该函数将请求头字符串形式转为字典格式（开头为":"的要先去掉，否则会报错）
     def Pretty_headers(self,start_headers:str) -> dict:
         headers = {}
         start_headers = start_headers.strip().split("\n")
@@ -13,7 +13,7 @@ class Pretty:
             headers[head[0]] = head[1].strip()
         return headers
 
-    # 优化Excel文件格式，使行宽列宽适合。
+    # 传入Excel文件的路径以及需要优化的表名，该函数会优化Excel文件格式，调整行宽列宽并使文字居中。
     def Pretty_excel(self,filepath,sheetname) -> None:
         wb = openpyxl.load_workbook(filepath)
         ws = wb[sheetname]
